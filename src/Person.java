@@ -1,13 +1,15 @@
-public class Person {
+import java.sql.SQLOutput;
+
+public abstract class Person {
     private String firstName;
     private String lastName;
-    private int age;
+    private static int age;
     private Person partner;
 
     public Person(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        Person.age = age;
     }
 
     public String getFirstName() {
@@ -26,12 +28,12 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getAge() {
+    public static int getAge() {
         return age;
     }
 
     public void setAge(int age) {
-        this.age = age;
+        Person.age = age;
     }
 
     public Person getPartner() {
@@ -42,27 +44,24 @@ public class Person {
         this.partner = partner;
     }
 
-    public boolean isRetired() {
-        if (this instanceof Man) {
-            return age >= 65;
-        }
-        else if (this instanceof Woman) {
-            return age >= 60;
-        }
-        else {
-            return false;
-        }
-    }
+    public abstract boolean isRetired();
+
     public void registerPartnership(Person partner) {
+        if (this.partner == null && partner.getPartner() == null) {
         this.partner = partner;
         if (this instanceof Woman) {
             this.setLastName(partner.getLastName());
         }
-        partner.setPartner(this);
+        else {
+            System.out.println("This person already has a partner");
+        }
+        }
+            partner.setPartner(this);
+
     }
-    public void deregisterPartnership(boolean revertLastName) {
+    public void deregisterPartnership(boolean shouldRevertLastName) {
         if (partner != null) {
-            if (this instanceof Woman && revertLastName) {
+            if (this instanceof Woman && shouldRevertLastName) {
                 this.setPartner(null);
                 this.partner = null;
             }
