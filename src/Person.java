@@ -3,13 +3,13 @@ import java.sql.SQLOutput;
 public abstract class Person {
     private String firstName;
     private String lastName;
-    private static int age;
+    private int age;
     private Person partner;
 
     public Person(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
-        Person.age = age;
+        this.age = age;
     }
 
     public String getFirstName() {
@@ -28,13 +28,11 @@ public abstract class Person {
         this.lastName = lastName;
     }
 
-    public static int getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        Person.age = age;
-    }
+    public void setAge(int age) { this.age = age; }
 
     public Person getPartner() {
         return partner;
@@ -61,7 +59,7 @@ public abstract class Person {
     }
     public void deregisterPartnership(boolean shouldRevertLastName) {
         if (partner != null) {
-            if (this instanceof Woman && shouldRevertLastName) {
+            if (this instanceof Woman) {
                 this.setPartner(null);
                 this.partner = null;
             }

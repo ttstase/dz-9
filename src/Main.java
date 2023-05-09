@@ -9,7 +9,7 @@ public class Main {
 
         System.out.println("Ім'я - " + man.getFirstName()
                 + ", Прізвище - " + man.getLastName()
-                + ", Вік - " + Man.getAge());
+                + ", Вік - " + man.getAge());
 
         if (man.isRetired()) {
             System.out.println("Пенсіонер");
@@ -19,7 +19,7 @@ public class Main {
 
         System.out.println("Ім'я - " + woman.getFirstName()
                 + ", Прізвище - " + woman.getLastName()
-                + ", Вік - " + Woman.getAge());
+                + ", Вік - " + woman.getAge());
 
         if (woman.isRetired()) {
             System.out.println("Пенсіонер");
